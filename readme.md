@@ -17,10 +17,10 @@ $ npm install --save form-lifecycle
 var form = require('form-lifecycle')
 
 var form = form.create()
-// => {pristine: true, error: false, pending: false, fields: {}}
+// => {pristine: true, error: null, pending: false, fields: {}}
 
 var form2 = form.edit(form, {username: 'robot'})
-// => {pristine: true, error: false, pending: false, fields: { username: 'robot' }})
+// => {pristine: true, error: null, pending: false, fields: { username: 'robot' }})
 
 var form4 = form.submit(form3)
 // => {pristine: true, error: null, pending: true, fields: { username: 'robot' }})
@@ -33,9 +33,7 @@ var form5 = form.error(form4, 'error!')
 
 Every action returns a new form object, never mutating the existing one.
 
-#### `Lifecycle.create(initial)` -> `form`
-
-Also available as alias: `form.reset(initial)`
+#### `Lifecycle.create([data])` -> `form`
 
 Creates a basic form, extended by `initial` if desired.
 
@@ -47,6 +45,8 @@ Creates a basic form, extended by `initial` if desired.
   fields: {}
 }
 ```
+
+Also available as alias `Lifecycle.reset`.
 
 #### `Lifecycle.edit(form, newFields) -> newForm`
 
@@ -75,7 +75,9 @@ Extends `fields` with `newFields`.
 
 #### `Lifecycle.atObjectPath(path) -> lifecycleAtPath`
 
-Given a string or array path, returns a lifecycle of functions that take an object as the first argument instead of a form.
+Run FormLifecycle methods at a path of a given object (usually your app state).
+
+Given a string or array path, returns the same functions as above, set to run at the location determined by the `path`. Instead of taking a `form` as your first argument, these take an object.
 
 The form will make changes to the object at the given path, and return the changed object.
 
@@ -88,6 +90,7 @@ var state = {
     form: Form.create()
   }
 }
+
 var loginForm = Form.atObjectPath('login.form')
 
 // Creates a new state object, with all references the same except for the path to state.login.form.
@@ -108,9 +111,10 @@ var loginForm = Form.atObjectPath('login.form')
 function myReducer (state, action) {
   switch(action.type) {
     case 'LOGIN': return loginForm.submit(state)
-    case 'LOGIN_SUCCESS': loginForm.success(state)
-    case 'LOGIN_ERROR': loginForm.error(state, action.payload)
-    case 'LOGIN_EDIT_FORM': loginForm.edit(state, action.payload)
+    case 'LOGIN_SUCCESS': return loginForm.success(state)
+    case 'LOGIN_ERROR': return loginForm.error(state, action.payload)
+    case 'LOGIN_EDIT_FORM': return loginForm.edit(state, action.payload)
+    default: return state
   }
 }
 ```
