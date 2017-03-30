@@ -1,0 +1,31 @@
+{
+  "name": "form-lifecycle",
+  "main": "index.js",
+  "version": "0.0.0",
+  "description": "Lifecycle logic for forms: edit, submit, error, success, pending. Good with redux. <1kb.",
+  "license": "MIT",
+  "repository": "ajoslin/form-lifecycle",
+  "author": {
+    "name": "Andrew Joslin",
+    "email": "andrewtjoslin@gmail.com",
+    "url": "ajoslin.com"
+  },
+  "scripts": {
+    "test": "standard && tape test.js"
+  },
+  "keywords": [
+    "form",
+    "lifecycle",
+    "redux",
+    "immutable"
+  ],
+  "devDependencies": {
+    "spok": "^0.8.1",
+    "standard": "^7.0.0",
+    "tape": "^4.0.0"
+  },
+  "dependencies": {
+    "dot-prop": "^4.1.1",
+    "xtend": "^4.0.1"
+  }
+}
