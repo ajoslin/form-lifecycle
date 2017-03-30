@@ -17,16 +17,12 @@ $ npm install --save form-lifecycle
 var form = require('form-lifecycle')
 
 var form = form.create()
-// => {pristine: true, error: null, pending: false, fields: {}}
+// => {pristine: true, error: null, pending: false, fields: {}} 
 
-var form2 = form.edit(form, {username: 'robot'})
-// => {pristine: true, error: null, pending: false, fields: { username: 'robot' }})
+var form2 = form.submit(form)
+// => {pristine: true, error: null, pending: true, fields: {}})
 
-var form4 = form.submit(form3)
-// => {pristine: true, error: null, pending: true, fields: { username: 'robot' }})
-
-var form5 = form.error(form4, 'error!')
-// => {pristine: false, error: 'error!', pending: false, fields: { username: 'robot' }})
+// ... And more. See below.
 ```
 
 ## API
