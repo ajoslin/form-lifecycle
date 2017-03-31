@@ -1,6 +1,6 @@
 # form-lifecycle [![Build Status](https://travis-ci.org/ajoslin/form-lifecycle.svg?branch=master)](https://travis-ci.org/ajoslin/form-lifecycle)
 
-> Lifecycle logic for forms: edit, submit, error, success, pending. Good with redux. <1kb.
+> Lifecycle logic for forms: edit, submit, error, success, pending. <1kb.
 
 
 ## Install
