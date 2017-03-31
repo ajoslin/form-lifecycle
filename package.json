@@ -1,7 +1,7 @@
 {
   "name": "form-lifecycle",
   "main": "index.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Lifecycle logic for forms: edit, submit, error, success, pending. <1kb.",
   "license": "MIT",
   "repository": "ajoslin/form-lifecycle",
