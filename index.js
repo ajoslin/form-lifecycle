@@ -5,7 +5,7 @@ var lifecycle = require('./lifecycle')
 
 module.exports = extend(lifecycle)
 
-module.exports.atObjectPath = (path) => {
+module.exports.atObjectPath = function (path) {
   path = path.split ? path.split('.') : path
   var lastKey = path[path.length - 1]
 
