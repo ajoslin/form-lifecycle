@@ -6,6 +6,7 @@ function create (initial) {
   return extend({
     pristine: true,
     pending: false,
+    success: null,
     error: null,
     fields: {}
   }, initial)
@@ -21,6 +22,7 @@ module.exports = {
     return extend(form, {
       pristine: true,
       pending: true,
+      success: null,
       error: null
     })
   },
@@ -29,14 +31,16 @@ module.exports = {
     return extend(form, {
       pristine: false,
       pending: false,
+      success: null,
       error: error || null
     })
   },
 
-  success: function (form) {
+  success: function (form, data) {
     return extend(form, {
       pristine: true,
       pending: false,
+      success: data || true,
       error: null
     })
   },

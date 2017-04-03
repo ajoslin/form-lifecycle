@@ -17,10 +17,10 @@ $ npm install --save form-lifecycle
 var form = require('form-lifecycle')
 
 var form = form.create()
-// => {pristine: true, error: null, pending: false, fields: {}} 
+// => {pristine: true, error: null, pending: false, success: null, fields: {}}
 
 var form2 = form.submit(form)
-// => {pristine: true, error: null, pending: true, fields: {}})
+// => {pristine: true, error: null, pending: true, success: null, fields: {}})
 
 // ... And more. See below.
 ```
@@ -35,9 +35,10 @@ Creates a basic form, extended by `initial` if desired.
 
 ```js
 {
-  pristine: true
-  pending: false
-  error: null
+  pristine: true,
+  pending: false,
+  success: null,
+  error: null,
   fields: {}
 }
 ```
@@ -53,6 +54,7 @@ Extends `fields` with `newFields`.
 - `pending` to true
 - `pristine` to true
 - `error` to null
+- `success` to null
 - `fields` unchanged
 
 #### `Lifecycle.error(form, [error]) -> newForm`
@@ -60,13 +62,15 @@ Extends `fields` with `newFields`.
 - `pending` to false
 - `pristine` to false
 - `error` to supplied error or null
+- `success` to null
 - `fields` unchanged
 
-#### `Lifecycle.success(form) -> newForm`
+#### `Lifecycle.success(form, [data]) -> newForm`
 
 - `pending` to false
 - `pristine` to true
 - `error` to null
+- `success` to supplied data or true
 - `fields` unchanged
 
 #### `Lifecycle.atObjectPath(path) -> lifecycleAtPath`

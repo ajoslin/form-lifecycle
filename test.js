@@ -9,6 +9,7 @@ test('create', t => {
     pristine: true,
     pending: false,
     error: null,
+    success: null,
     fields: {}
   })
   spok(t, form.create(), form.reset())
@@ -23,6 +24,7 @@ test('create with arg', t => {
     pristine: false,
     pending: false,
     error: null,
+    success: null,
     fields: {foo: 'bar'}
   })
   t.end()
@@ -33,6 +35,7 @@ test('submit', t => {
     pristine: true,
     pending: true,
     error: null,
+    success: null,
     fields: {}
   })
   t.end()
@@ -43,17 +46,30 @@ test('error', t => {
     pristine: false,
     pending: false,
     error: 123,
+    success: null,
     fields: {}
   })
   t.end()
 })
 
-test('success', t => {
+test('success with data', t => {
   const erroredForm = form.error(form.create(), 123)
-  spok(t, form.success(erroredForm), {
+  spok(t, form.success(erroredForm, 'good work!'), {
     pristine: true,
     pending: false,
     error: null,
+    success: 'good work!',
+    fields: {}
+  })
+  t.end()
+})
+
+test('success default data', t => {
+  spok(t, form.success(form.create()), {
+    pristine: true,
+    pending: false,
+    error: null,
+    success: true,
     fields: {}
   })
   t.end()
@@ -64,6 +80,7 @@ test('edit', t => {
     pristine: true,
     pending: false,
     error: null,
+    success: null,
     fields: {
       username: 'andrew'
     }
