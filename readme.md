@@ -45,6 +45,10 @@ Creates a basic form, extended by `initial` if desired.
 
 Also available as alias `Lifecycle.reset`.
 
+#### `Lifecycle.reset(form, [data]) -> newForm`
+
+Creates a new form, extending it with optional `data`. Effectively the same as create, except it follows the expected argument form of the others.
+
 #### `Lifecycle.edit(form, newFields) -> newForm`
 
 Extends `fields` with `newFields`.

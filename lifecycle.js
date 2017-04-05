@@ -15,8 +15,9 @@ function create (initial) {
 module.exports = {
   create: create,
 
-  // reset: alias to create a new form
-  reset: create,
+  reset: function (form, data) {
+    return create(data)
+  },
 
   submit: function (form) {
     return extend(form, {

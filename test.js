@@ -12,7 +12,18 @@ test('create', t => {
     success: null,
     fields: {}
   })
-  spok(t, form.create(), form.reset())
+  t.end()
+})
+
+test('reset', t => {
+  spok(t, form.reset(), form.create())
+  spok(t, form.reset(form.create(), {pristine: false}), {
+    pristine: false,
+    pending: false,
+    error: null,
+    success: null,
+    fields: {}
+  })
   t.end()
 })
 
