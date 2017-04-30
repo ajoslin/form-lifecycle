@@ -147,3 +147,10 @@ test('atObjectPath with one key', t => {
   })
   t.end()
 })
+
+test('works without args', t => {
+  spok(t, form.submit(), form.submit(form.create()))
+  spok(t, form.error(), form.error(form.create()))
+  spok(t, form.success(), form.success(form.create()))
+  t.end()
+})

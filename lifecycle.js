@@ -20,7 +20,7 @@ module.exports = {
   },
 
   submit: function (form) {
-    return extend(form, {
+    return extend(form || create(), {
       pristine: true,
       pending: true,
       success: null,
@@ -29,7 +29,7 @@ module.exports = {
   },
 
   error: function (form, error) {
-    return extend(form, {
+    return extend(form || create(), {
       pristine: false,
       pending: false,
       success: null,
@@ -38,7 +38,7 @@ module.exports = {
   },
 
   success: function (form, data) {
-    return extend(form, {
+    return extend(form || create(), {
       pristine: true,
       pending: false,
       success: data || true,
@@ -47,7 +47,7 @@ module.exports = {
   },
 
   edit: function (form, fields) {
-    return extend(form, {
+    return extend(form || create(), {
       fields: extend(form.fields, fields)
     })
   }
